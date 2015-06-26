@@ -2,6 +2,11 @@ require 'spec_helper'
 require_relative 'helpers.rb'
 
 feature 'Starting a new game' do
+
+  before(:each)do
+    $gane = nil
+  end
+
   scenario 'asks the user for their name' do
     visit '/'
     click_link 'New Game'
