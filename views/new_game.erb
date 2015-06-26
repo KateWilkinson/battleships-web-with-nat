@@ -5,9 +5,13 @@
     <pre><%= $game.own_board_view $game.player_2 %></pre>
   <% end %>
 
+  <% if @error %>
+    <%= @error %>
+  <% end %>
+
      Please place a ship
       <form action="/New_Game" method="post">
-        <input type="hidden" name="name" value=<%= @name %>> 
+        <input type="hidden" name="name" value=<%= @name %>>
         Ship: <select name="ship">
           <option name="ship" value="submarine">Submarine</option>
           <option name="ship" value="destroyer">Destroyer</option>

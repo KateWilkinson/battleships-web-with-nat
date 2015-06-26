@@ -39,25 +39,32 @@ class BattleshipsWeb < Sinatra::Base
     @ship = params[:ship]
     @coordinates = params[:coordinates]
     @orientation = params[:orientation]
-    if session[:player] == 'player_1'
-      $game.player_1.place_ship Ship.new(@ship), @coordinates, @orientation
-    else
-      $game.player_2.place_ship Ship.new(@ship), @coordinates, @orientation
+    begin
+      session_player.place_ship Ship.new(@ship), @coordinates, @orientation
+    rescue RuntimeError => @error
     end
     erb :new_game
   end
 
   post '/Gameplay' do
+
     @fire = params[:fire]
     if @fire
-      if session[:player] == 'player_1'
-        $game.player_1.shoot @fire.to_sym
-      else
-        $game.player_2.shoot @fire.to_sym
+      begin
+      session_player.shoot @fire.to_sym
+      rescue RuntimeError => @error
       end
     end
     erb :gameplay
   end
-  # start the server if ruby file executed directly
+
+  def session_player
+    if session[:player] == 'player_1'
+      $game.player_1
+    else
+      $game.player_2
+    end
+  end
+
   run! if app_file == $0
 end

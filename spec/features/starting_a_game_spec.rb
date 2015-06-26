@@ -149,7 +149,7 @@ feature 'Starting a new game' do
       fill_in('name', with: 'Bob')
       click_button('Submit')
       click_button('Submit')
-      
+
     end
 
     in_browser(:two) do
@@ -168,7 +168,7 @@ feature 'Starting a new game' do
     end
 
     in_browser(:two) do
-      
+
       click_button('Start')
       fill_in('fire', with: 'C3')
       click_button('Fire!')

@@ -5,6 +5,11 @@
   <pre><%= $game.own_board_view $game.player_2 %></pre>
   <pre><%= $game.opponent_board_view $game.player_2 %></pre>
 <% end %>
+
+<% if @error %>
+  <%= @error %> - enter another coordinate to fire at
+<% end %>
+
 <form id="Fire" action="/Gameplay" method="post">
   <input type="text" name="fire" >
   <input type="submit" value="Fire!">
