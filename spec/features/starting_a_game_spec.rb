@@ -4,7 +4,7 @@ require_relative 'helpers.rb'
 feature 'Starting a new game' do
 
   before(:each)do
-    $gane = nil
+    $game = nil
   end
 
   scenario 'asks the user for their name' do
