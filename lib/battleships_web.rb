@@ -49,6 +49,9 @@ class BattleshipsWeb < Sinatra::Base
   post '/Gameplay' do
 
     @fire = params[:fire]
+    if session_player.winner?
+      redirect '/winner'
+    end
     if @fire
       begin
       session_player.shoot @fire.to_sym
@@ -56,6 +59,10 @@ class BattleshipsWeb < Sinatra::Base
       end
     end
     erb :gameplay
+  end
+
+  get '/winner' do
+    erb :winner
   end
 
   def session_player
